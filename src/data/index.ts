@@ -121,7 +121,7 @@ export const mediaItems: MediaItem[] = [
 ];
 
 export const socialLinks = {
-  github: "https://github.com/yourhandle",
+  github: "https://github.com/Arin1604",
   linkedin: "https://linkedin.com/in/yourhandle",
   email: "your.email@example.com"
 }
