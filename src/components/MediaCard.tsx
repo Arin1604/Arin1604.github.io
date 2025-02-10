@@ -5,7 +5,7 @@ interface MediaCardProps extends MediaItem {
   onClick: (item: MediaItem) => void;
 }
 
-const MediaCard: React.FC<MediaCardProps> = ({ type, title, description, thumbnail, videoUrl, onClick }) => {
+const MediaCard: React.FC<MediaCardProps> = ({ type, title, description, thumbnail, videoUrl='', onClick }) => {
   const handleCardClick = () => {
     onClick({ type, title, description, thumbnail, videoUrl });
   };

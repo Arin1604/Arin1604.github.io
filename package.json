@@ -1,13 +1,13 @@
 {
   "name": "portfolio-website",
-  "homepage":"https://Arin1604.github.io/react-gh-pages",
+  "homepage":"http://Arin1604.github.io/Arin1604.github.io",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build ",
+    "deploy": "gh-pages -d out",
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
     "lint": "next lint"
   },

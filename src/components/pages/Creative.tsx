@@ -18,7 +18,7 @@ export default function Creative() {
   );
 }
 
-function MediaCard({ type, title, description, thumbnail, videoUrl }: MediaItem) {
+function MediaCard({ type, title, description, thumbnail, videoUrl = ''}: MediaItem) {
   // Function to get YouTube thumbnail URL from video URL
   const getYouTubeThumbnail = (url: string) => {
     const videoId = new URL(url).searchParams.get('v');
