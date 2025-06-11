@@ -1,7 +1,7 @@
 export interface Project {
   title: string;
   description: string;
-  fullDescription: string;
+  fullDescription: React.ReactNode;
   technologies: string[];
   features: string[];
   liveUrl?: string;

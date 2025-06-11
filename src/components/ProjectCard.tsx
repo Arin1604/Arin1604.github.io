@@ -97,7 +97,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               </button>
 
               <h2 className="text-2xl font-bold font-mono text-white">{project.title}</h2>
-              <p className="text-gray-300">{project.fullDescription}</p>
+              <div className="text-gray-300">{project.fullDescription}</div>
 
               <div className="space-y-3">
                 <h4 className="font-bold font-mono text-white">Key Features</h4>
