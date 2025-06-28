@@ -5,6 +5,7 @@ export const navItems: NavItem[] = [
   { label: 'About', href: '/about' },
   { label: 'Projects', href: '/projects' },
   { label: 'Creative', href: '/creative' },
+  { label: 'Resume', href: 'https://drive.google.com/file/d/108JVdP6HlZitvbNiJOApy3CdLCLKe363/view?usp=sharing'},
 ]
 
 const projects: Project[] = [
@@ -123,8 +124,8 @@ export const mediaItems: MediaItem[] = [
 
 export const socialLinks = {
   github: "https://github.com/Arin1604",
-  linkedin: "https://linkedin.com/in/yourhandle",
-  email: "your.email@example.com"
+  linkedin: "https://linkedin.com/in/arin-idhant-111860258/",
+  email: "arin_idhant@brown.edu"
 }
 
 export { projects };
