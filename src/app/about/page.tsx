@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-const images = ['/Arin1.jpg', '/Arin2.jpg', '/Arin3.jpg', '/Arin4.jpg']; // ✅ Place these in /public
+const images = ['/Arin1.jpg', '/Arin1.jpg', '/Arin1.jpg', '/Arin1.jpg']; // ✅ Place these in /public
 
 export default function AboutPage() {
   const [current, setCurrent] = useState(0);
