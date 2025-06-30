@@ -4,9 +4,13 @@ export default function About() {
       <div className="max-w-3xl mx-auto">
         <h1 className="text-4xl font-bold mb-6">About Me</h1>
         <p className="mb-4 text-lg">
-          Hey! I’m Arin Idhant, a creative technologist passionate about camera systems,
-          computer graphics, and real-time 3D. I’m currently pursuing my studies in the U.S.
-          and have worked across research, immersive media, and filmmaking.
+          Hi! My name is Arin, and 
+          I’m a senior at Brown University studying Computer Science. 
+          I’m deeply passionate about Computer Graphics, Computer Vision, 
+          and Software Engineering. Currently, I’m a Camera Software Intern at Metalenz, 
+          where I’m working on Qualcomm-based camera pipeline drivers. I’m also a research assistant in 
+          Brown’s Visual Computing Lab, focusing on improving depth completion models for our VR teleoperation project. 
+          This fall, I’ll be returning as a teaching assistant for Brown’s Computer Graphics course. Outside the lab and classroom, you’ll likely find me taking pictures or gushing over the cinematography in my favorite films at the theater.
         </p>
         <p className="mb-4 text-lg">
           My recent work includes contributing to a VR teleoperation project using the Boston Dynamics Spot robot,
