@@ -58,7 +58,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           <h3 className="text-xl font-bold mb-2 font-mono text-white">{project.title}</h3>
           <p className="text-gray-300 mb-4">{project.description}</p>
           <div className="flex flex-wrap gap-2">
-            {project.technologies.map((tech, index) => (
+            {project.skills.map((tech, index) => (
               <span
                 key={index}
                 className="px-4 py-2 text-sm border border-gray-600 bg-gray-700 rounded-full font-mono text-white"
@@ -112,9 +112,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               </div>
 
               <div className="space-y-3">
-                <h4 className="font-bold font-mono text-white">Technologies Used</h4>
+                <h4 className="font-bold font-mono text-white">Skills</h4>
                 <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech, index) => (
+                  {project.skills.map((tech, index) => (
                     <span
                       key={index}
                       className="px-4 py-2 text-sm border border-gray-600 bg-gray-700 rounded-full font-mono text-white"

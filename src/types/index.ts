@@ -2,7 +2,7 @@ export interface Project {
   title: string;
   description: string;
   fullDescription: React.ReactNode;
-  technologies: string[];
+  skills: string[];
   features: string[];
   liveUrl?: string;
   githubUrl?: string;
