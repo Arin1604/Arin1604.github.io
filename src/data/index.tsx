@@ -178,6 +178,167 @@ Reservoir UpdateReservoir(Reservoir r, ReservoirSample sam, float weight) {
     imageUrl: "https://i.imgur.com/22jWCY0.png"
   },
   {
+    title: "ARAP (As Rigid As Possible Mesh Deformations)",
+    description: "A mesh deformation application that preserves surface rigidity",
+    fullDescription: (
+      <div className="space-y-6 text-gray-300">
+
+        <p>
+          Making meshes move is incredibly fun (look at the Armadillo wave!). 
+          But how exactly do you go from moving vertices to physically plausible movement that preserves the form of the mesh? Enter ARAP!
+        </p>
+
+        <p>
+          I implemented the <a href="https://igl.ethz.ch/projects/ARAP/arap_web.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:text-indigo-400">
+          As-Rigid-As-Possible Surface Modeling</a> paper for our assignment in Advanced Computer Graphics. 
+          The goal is to define a locally shape-preserving deformation, which preserves details in the mesh during deformation.
+        </p>
+
+        <h3 className="text-lg font-semibold mt-6">Results</h3>
+        <p>Here are some examples comparing naive vertex movement vs ARAP:</p>
+
+        <div className="grid grid-cols-1 gap-6 mt-4">
+
+          <figure className="flex flex-col items-center">
+            <img
+              src="https://i.imgur.com/CKuVXBc.gif"
+              alt="Side by side naive vs ARAP"
+              className="rounded-lg border border-gray-700 w-full max-w-4xl h-auto"
+            />
+            <figcaption className="text-sm mt-2 text-gray-400 text-center max-w-4xl">
+              Left: Moving a single vertex naively, Right: ARAP deformation
+            </figcaption>
+          </figure>
+
+          <figure className="flex flex-col items-center">
+            <img
+              src="https://i.imgur.com/d3gibgL.gif"
+              alt="ARAP Armadillo wave"
+              className="rounded-lg border border-gray-700 w-full max-w-4xl h-auto"
+            />
+            <figcaption className="text-sm mt-2 text-gray-400 text-center max-w-4xl">
+              Armadillo waving using ARAP
+            </figcaption>
+          </figure>
+
+          <figure className="flex flex-col items-center">
+            <img
+              src="https://i.imgur.com/t6qgc5i.gif"
+              alt="Moving teapot"
+              className="rounded-lg border border-gray-700 w-full max-w-4xl h-auto"
+            />
+            <figcaption className="text-sm mt-2 text-gray-400 text-center max-w-4xl">
+              Moving Teapot
+            </figcaption>
+          </figure>
+
+          <figure className="flex flex-col items-center">
+            <img
+              src="https://i.imgur.com/tHesSC8.gif"
+              alt="Moving bean"
+              className="rounded-lg border border-gray-700 w-full max-w-4xl h-auto"
+            />
+            <figcaption className="text-sm mt-2 text-gray-400 text-center max-w-4xl">
+              Moving Bean
+            </figcaption>
+          </figure>
+
+        </div>
+
+        <h3 className="text-lg font-semibold mt-8">Summary</h3>
+        <p>
+          The key to preserving local features is minimizing local rigidity energy per cell. 
+          Each cell for a vertex <code>p_i</code> is defined as the one-ring neighborhood of vertices around <code>p_i</code>, denoted <code>C_i</code>.
+        </p>
+
+        <figure className="flex flex-col items-center">
+          <img
+            src="https://i.imgur.com/eQVjxLA.jpeg"
+            alt="Cell diagram"
+            className="rounded-lg border border-gray-700 w-full max-w-4xl h-auto"
+          />
+          <figcaption className="text-sm mt-2 text-gray-400 text-center max-w-4xl">
+            Cell defined for vertex p_i
+          </figcaption>
+        </figure>
+
+        <p>
+          When a user deforms the mesh, vertices are displaced. Let the new positions be <code>p_i'</code>, <code>p_j'</code> and edge <code>e_ij'</code>. 
+          Let <code>R_i</code> denote the rotation describing the transformation from <code>e_ij</code> to <code>e_ij'</code>.
+        </p>
+
+        <figure className="flex flex-col items-center">
+          <img
+            src="https://i.imgur.com/txbu9Ui.jpeg"
+            alt="Rotation matrix diagram"
+            className="rounded-lg border border-gray-700 w-full max-w-4xl h-auto"
+          />
+          <figcaption className="text-sm mt-2 text-gray-400 text-center max-w-4xl">
+            Rotation for vertex p_i
+          </figcaption>
+        </figure>
+
+        <p className="font-mono bg-gray-800 p-4 rounded-lg overflow-x-auto text-sm text-gray-100">
+          {'p_i\' - p_j\' = R_i * (p_i - p_j), ∀ j ∈ N(i)'}
+        </p>
+
+        <p className="font-mono bg-gray-800 p-4 rounded-lg overflow-x-auto text-sm text-gray-100">
+          {'E(C_i, C_i\') = Σ_{j∈N(i)} w_ij ||(p_i\' - p_j\') - R_i(p_i - p_j)||^2'}
+        </p>
+
+        <h3 className="text-lg font-semibold mt-6">Implementation Details</h3>
+        <p>
+          The goal is to find new vertices <code>p'</code> that minimize the local rigidity energy after a user moves vertices. 
+          We solve for <code>p'</code> using an iterative approach:
+        </p>
+        <ul className="list-disc list-inside space-y-1">
+          <li>Store the original mesh configuration.</li>
+          <li>Get initial new positions from user input.</li>
+          <li>Iteratively compute rotations per vertex minimizing surface rigidity energy.</li>
+          <li>Use these rotations to optimize new vertices by solving the sparse linear system <code>L p' = b</code>.</li>
+        </ul>
+
+        <figure className="flex flex-col items-center">
+          <img
+            src="https://i.imgur.com/gQx03DT.jpeg"
+            alt="Cotangent weights"
+            className="rounded-lg border border-gray-700 w-full max-w-4xl h-auto"
+          />
+          <figcaption className="text-sm mt-2 text-gray-400 text-center max-w-4xl">
+            Cotangent weights for edges
+          </figcaption>
+        </figure>
+
+        <figure className="flex flex-col items-center">
+          <img
+            src="https://i.imgur.com/UZ4zTWf.jpeg"
+            alt="Vertex neighbors"
+            className="rounded-lg border border-gray-700 w-full max-w-4xl h-auto"
+          />
+          <figcaption className="text-sm mt-2 text-gray-400 text-center max-w-4xl">
+            One-ring neighbors for vertex i
+          </figcaption>
+        </figure>
+
+        <p>
+          We populate the <code>L</code> matrix for all vertices and neighbors, zeroing out rows/columns for anchored vertices. 
+          Then, using computed rotations, we construct <code>b</code> and solve <code>L p' = b</code> with Eigen’s <code>SimplicialLDLT</code> solver.
+        </p>
+
+      </div>
+    ),
+    skills: ["C++", "Eigen", "Sparse Linear Algebra", "Mesh Deformation"],
+    features: [
+      "ARAP Surface Modeling",
+      "Local Rigidity Preservation",
+      "Sparse Linear System Solver",
+      "Interactive Mesh Deformations"
+    ],
+    liveUrl: "https://i.imgur.com/CKuVXBc.gif",
+    githubUrl: "https://github.com/Arin1604/ARAP-Mesh-Deformation",
+    imageUrl: "https://i.imgur.com/CKuVXBc.gif"
+  },
+  {
     title: "Fitness Tracker",
     description: "A mobile app for tracking workouts and nutrition.",
     fullDescription: (
