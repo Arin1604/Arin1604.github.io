@@ -439,14 +439,13 @@ Consider a vertex i and its neighbor p below:
       <div className="mt-2">
         <iframe
           width="100%"
-          maxWidth="800px"
           height="450"
           src="https://www.youtube.com/embed/LYCowWiCWmY"
           title="Jellyfish Rigging Tool Demo"
-          frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
           className="rounded-lg border border-gray-700 w-full"
+          style={{ maxWidth: "800px" }}
         ></iframe>
       </div>
 
