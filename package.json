@@ -1,6 +1,6 @@
 {
   "name": "portfolio-website",
-  "homepage":"http://Arin1604.github.io/",
+  "homepage": "http://Arin1604.github.io/",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,10 +15,12 @@
     "@radix-ui/react-dialog": "^1.1.5",
     "@tailwindcss/postcss": "^4.0.3",
     "clsx": "^2.1.1",
+    "katex": "^0.16.22",
     "lucide-react": "^0.474.0",
     "next": "15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-katex": "^3.1.0",
     "tailwind-merge": "^3.0.1"
   },
   "devDependencies": {

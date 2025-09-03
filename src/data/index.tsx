@@ -1,4 +1,7 @@
 import { Project, MediaItem, NavItem } from '@/types'
+import 'katex/dist/katex.min.css';
+import { InlineMath, BlockMath } from 'react-katex';
+
 
 export const navItems: NavItem[] = [
   { label: 'Home', href: '/' },
@@ -195,7 +198,7 @@ Reservoir UpdateReservoir(Reservoir r, ReservoirSample sam, float weight) {
         </p>
 
         <h3 className="text-lg font-semibold mt-6">Results</h3>
-        <p>Here are some examples comparing naive vertex movement vs ARAP:</p>
+        <p>Here we can see the difference between naive vertex movement and ARAP:</p>
 
         <div className="grid grid-cols-1 gap-6 mt-4">
 
@@ -203,10 +206,10 @@ Reservoir UpdateReservoir(Reservoir r, ReservoirSample sam, float weight) {
             <img
               src="https://i.imgur.com/CKuVXBc.gif"
               alt="Side by side naive vs ARAP"
-              className="rounded-lg border border-gray-700 w-full max-w-4xl h-auto"
+              className="rounded-lg border border-gray-700 w-full max-w-lg h-auto"
             />
-            <figcaption className="text-sm mt-2 text-gray-400 text-center max-w-4xl">
-              Left: Moving a single vertex naively, Right: ARAP deformation
+            <figcaption className="text-sm mt-2 text-gray-400 text-center max-w-lg">
+              Moving a single vertex without ARAP
             </figcaption>
           </figure>
 
@@ -214,20 +217,21 @@ Reservoir UpdateReservoir(Reservoir r, ReservoirSample sam, float weight) {
             <img
               src="https://i.imgur.com/d3gibgL.gif"
               alt="ARAP Armadillo wave"
-              className="rounded-lg border border-gray-700 w-full max-w-4xl h-auto"
+              className="rounded-lg border border-gray-700 w-full max-w-lg h-auto"
             />
-            <figcaption className="text-sm mt-2 text-gray-400 text-center max-w-4xl">
+            <figcaption className="text-sm mt-2 text-gray-400 text-center max-w-lg">
               Armadillo waving using ARAP
             </figcaption>
           </figure>
 
+          <h3 className="text-lg font-semibold mt-6">Some more results:</h3>
           <figure className="flex flex-col items-center">
             <img
               src="https://i.imgur.com/t6qgc5i.gif"
               alt="Moving teapot"
-              className="rounded-lg border border-gray-700 w-full max-w-4xl h-auto"
+              className="rounded-lg border border-gray-700 w-full max-w-lg h-auto"
             />
-            <figcaption className="text-sm mt-2 text-gray-400 text-center max-w-4xl">
+            <figcaption className="text-sm mt-2 text-gray-400 text-center max-w-lg">
               Moving Teapot
             </figcaption>
           </figure>
@@ -236,9 +240,9 @@ Reservoir UpdateReservoir(Reservoir r, ReservoirSample sam, float weight) {
             <img
               src="https://i.imgur.com/tHesSC8.gif"
               alt="Moving bean"
-              className="rounded-lg border border-gray-700 w-full max-w-4xl h-auto"
+              className="rounded-lg border border-gray-700 w-full max-w-lg h-auto"
             />
-            <figcaption className="text-sm mt-2 text-gray-400 text-center max-w-4xl">
+            <figcaption className="text-sm mt-2 text-gray-400 text-center max-w-lg">
               Moving Bean
             </figcaption>
           </figure>
@@ -247,83 +251,152 @@ Reservoir UpdateReservoir(Reservoir r, ReservoirSample sam, float weight) {
 
         <h3 className="text-lg font-semibold mt-8">Summary</h3>
         <p>
-          The key to preserving local features is minimizing local rigidity energy per cell. 
+          But how exactly do we preserve local features? The key is to minimize local rigidity energy per cell! But what does <em>minimizing local rigidity energy per cell</em> mean?
+           
           Each cell for a vertex <code>p_i</code> is defined as the one-ring neighborhood of vertices around <code>p_i</code>, denoted <code>C_i</code>.
         </p>
 
         <figure className="flex flex-col items-center">
-          <img
-            src="https://i.imgur.com/eQVjxLA.jpeg"
-            alt="Cell diagram"
-            className="rounded-lg border border-gray-700 w-full max-w-4xl h-auto"
-          />
-          <figcaption className="text-sm mt-2 text-gray-400 text-center max-w-4xl">
-            Cell defined for vertex p_i
-          </figcaption>
-        </figure>
+  <img
+    src="https://i.imgur.com/eQVjxLA.jpeg"
+    alt="Cell diagram"
+    className="rounded-lg border border-gray-700 w-full max-w-lg h-auto"
+  />
+  <figcaption className="text-sm mt-2 text-gray-400 text-center max-w-lg">
+    Cell defined for vertex <code>p_i</code>
+  </figcaption>
+</figure>
+
 
         <p>
-          When a user deforms the mesh, vertices are displaced. Let the new positions be <code>p_i'</code>, <code>p_j'</code> and edge <code>e_ij'</code>. 
-          Let <code>R_i</code> denote the rotation describing the transformation from <code>e_ij</code> to <code>e_ij'</code>.
-        </p>
+        When a user deforms the mesh, vertices are displaced. Let the new positions be <code>p_i'</code>, <code>p_j'</code>, and the new edge be <code>e_ij'</code>. 
+        Let <code>R_i</code> denote the rotation describing the transformation from <code>e_ij</code> to <code>e_ij'</code>.
+      </p>
 
         <figure className="flex flex-col items-center">
           <img
             src="https://i.imgur.com/txbu9Ui.jpeg"
             alt="Rotation matrix diagram"
-            className="rounded-lg border border-gray-700 w-full max-w-4xl h-auto"
+            className="rounded-lg border border-gray-700 w-full max-w-lg h-auto"
           />
-          <figcaption className="text-sm mt-2 text-gray-400 text-center max-w-4xl">
+          <figcaption className="text-sm mt-2 text-gray-400 text-center max-w-lg">
             Rotation for vertex p_i
           </figcaption>
         </figure>
 
-        <p className="font-mono bg-gray-800 p-4 rounded-lg overflow-x-auto text-sm text-gray-100">
-          {'p_i\' - p_j\' = R_i * (p_i - p_j), ∀ j ∈ N(i)'}
+        <p>
+          For a perfectly rigid transformation, we can say that: 
         </p>
 
-        <p className="font-mono bg-gray-800 p-4 rounded-lg overflow-x-auto text-sm text-gray-100">
-          {'E(C_i, C_i\') = Σ_{j∈N(i)} w_ij ||(p_i\' - p_j\') - R_i(p_i - p_j)||^2'}
+        <BlockMath math={`\\mathbf{p}'_i - \\mathbf{p}'_j = \\mathbf{R}_i(\\mathbf{p}_i - \\mathbf{p}_j), \\quad \\forall j \\in \\mathcal{N}(i)`} />
+
+
+        <p>
+          But for our case, where the deformations aren’t perfectly rigid, we want to preserve local features by defining rotations that are as rigid as possible. That is, they minimize:
+        </p>
+
+        <BlockMath math={`E(\\mathcal{C}_i, \\mathcal{C}'_i) = \\sum_{j \\in \\mathcal{N}(i)} w_{ij} \\left\\| (\\mathbf{p}'_i - \\mathbf{p}'_j) - \\mathbf{R}_i(\\mathbf{p}_i - \\mathbf{p}_j) \\right\\|^2`} />
+
+
+        <p>
+          This is local rigidity energy, and minimizing it across all vertices helps us preserve local features.
+
         </p>
 
         <h3 className="text-lg font-semibold mt-6">Implementation Details</h3>
         <p>
-          The goal is to find new vertices <code>p'</code> that minimize the local rigidity energy after a user moves vertices. 
-          We solve for <code>p'</code> using an iterative approach:
+          The key goal is to find the new vertices <code>p'</code> that minimize the local rigidity energy for a mesh after it has been deformed by a user. 
+          This allows us to preserve local features while moving the mesh in interesting ways (like making our armadillo wave).
         </p>
+
+        <p>
+          We solve for these new vertices using an iterative approach:
+        </p>
+
         <ul className="list-disc list-inside space-y-1">
-          <li>Store the original mesh configuration.</li>
-          <li>Get initial new positions from user input.</li>
-          <li>Iteratively compute rotations per vertex minimizing surface rigidity energy.</li>
-          <li>Use these rotations to optimize new vertices by solving the sparse linear system <code>L p' = b</code>.</li>
+          <li>Store the original configuration of the mesh.</li>
+          <li>Get the initial new positions from the user when the vertices are moved.</li>
+          <li>Compute rotations for each vertex that minimize the surface rigidity energy for the new positions. (Initially, these are the user-constrained input positions. Subsequent iterations use the updated vertices from the previous step.)</li>
+          <li>Use these rotations to optimize for new vertices by solving the sparse linear system <code>L p' = b</code>.</li>
         </ul>
+
+        <p>We will initialize a sparse Laplacian matrix that will encode the relationship between the vertices. This requires a preparatory step where we prepare the cotangent weights for all the edges in our mesh. It is defined as follows:</p>
 
         <figure className="flex flex-col items-center">
           <img
             src="https://i.imgur.com/gQx03DT.jpeg"
             alt="Cotangent weights"
-            className="rounded-lg border border-gray-700 w-full max-w-4xl h-auto"
+            className="rounded-lg border border-gray-700 w-full max-w-lg h-auto"
           />
-          <figcaption className="text-sm mt-2 text-gray-400 text-center max-w-4xl">
+          <figcaption className="text-sm mt-2 text-gray-400 text-center max-w-lg">
             Cotangent weights for edges
           </figcaption>
         </figure>
+
+        <p>Once these edges are defined, we initialize an NxN sparse matrix that stores the cotangent weights for the vertex and its neighbor.
+
+Consider a vertex i and its neighbor p below:
+</p>
+
+        
 
         <figure className="flex flex-col items-center">
           <img
             src="https://i.imgur.com/UZ4zTWf.jpeg"
             alt="Vertex neighbors"
-            className="rounded-lg border border-gray-700 w-full max-w-4xl h-auto"
+            className="rounded-lg border border-gray-700 w-full max-w-lg h-auto"
           />
-          <figcaption className="text-sm mt-2 text-gray-400 text-center max-w-4xl">
+          <figcaption className="text-sm mt-2 text-gray-400 text-center max-w-lg">
             One-ring neighbors for vertex i
           </figcaption>
         </figure>
 
+        <p>We will add the following entries to L:</p>
+
+        <ul className="list-disc list-inside space-y-1">
+        <li><InlineMath math="L_{ip} = L_{pi} = -w_{ip}" /></li>
+        <li><InlineMath math="L_{iq} = L_{qi} = -w_{iq}" /></li>
+        <li><InlineMath math="L_{ir} = L_{ri} = -w_{ir}" /></li>
+        <li><InlineMath math="L_{is} = L_{si} = -w_{is}" /></li>
+        <li><InlineMath math="L_{ii} = \sum_{n \in N(i)} w_{in}" /></li>
+      </ul>
+
+      <figure className="flex flex-col items-center">
+  <img
+    src="https://i.imgur.com/fcHlcqp.jpeg"
+    alt="Sparse L matrix example"
+    className="rounded-lg border border-gray-700 w-full max-w-lg h-auto"
+  />
+  <figcaption className="text-sm mt-2 text-gray-400 text-center max-w-lg">
+    Example of sparse <code>L</code> matrix entries for vertex <code>i</code> and its neighbor p
+  </figcaption>
+</figure>
+
         <p>
-          We populate the <code>L</code> matrix for all vertices and neighbors, zeroing out rows/columns for anchored vertices. 
-          Then, using computed rotations, we construct <code>b</code> and solve <code>L p' = b</code> with Eigen’s <code>SimplicialLDLT</code> solver.
-        </p>
+  We populate entries in the <code>L</code> matrix for all vertices and their neighbors. 
+  Since we are only concerned with one-ring neighborhoods to define a cell, most entries in <code>L</code> remain empty, as each vertex only connects to its immediate one-ring neighbors.
+</p>
+
+<p>
+  When a user anchors a point, we zero out the corresponding row and column in the <code>L</code> matrix. 
+  This effectively removes that vertex from the iterative optimization and fixes its position in place.
+</p>
+
+<p>
+  This gives us the <code>L</code> matrix in the equation we are trying to solve:
+</p>
+
+<BlockMath math={`L \\mathbf{p}' = \\mathbf{b}`} />
+
+<p>
+  Next, we compute rotation matrices for each vertex that best preserve the rigidity of its cell. 
+  Once these rotations are determined, we use them to construct the right-hand side vector <code>b</code>.
+</p>
+
+<p>
+  Finally, we apply Eigen’s <code>SimplicialLDLT</code> solver to efficiently solve this sparse system and compute the updated vertex positions <code>p'</code>.
+</p>
+
 
       </div>
     ),
@@ -334,9 +407,8 @@ Reservoir UpdateReservoir(Reservoir r, ReservoirSample sam, float weight) {
       "Sparse Linear System Solver",
       "Interactive Mesh Deformations"
     ],
-    liveUrl: "https://i.imgur.com/CKuVXBc.gif",
-    githubUrl: "https://github.com/Arin1604/ARAP-Mesh-Deformation",
-    imageUrl: "https://i.imgur.com/CKuVXBc.gif"
+   
+    imageUrl: "https://i.imgur.com/d3gibgL.gif"
   },
   {
     title: "Fitness Tracker",
