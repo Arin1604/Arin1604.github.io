@@ -416,9 +416,17 @@ Consider a vertex i and its neighbor p below:
     <div className="space-y-6 text-gray-300">
 
       <p>
-        I find jellyfish incredibly fascinating! (so much so that I once made an abstract film about them).
-        With this project, I set out to create a tool that lets you create, rig, and animate jellyfish tentacles
-        with full artistic control. 
+        I find jellyfish incredibly fascinating! (so much so that I made an{" "}
+        <a
+          href="https://youtu.be/ey2iszBzwdg?si=aq11VxjG131S0-iG"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-indigo-400"
+        >
+          abstract film
+        </a>{" "}
+        about them). With this project, I set out to create a tool that lets you create, rig, and animate jellyfish tentacles
+        with full artistic control.
       </p>
 
       <p>
@@ -428,17 +436,19 @@ Consider a vertex i and its neighbor p below:
       </p>
 
       <h3 className="text-lg font-semibold mt-6">Demo</h3>
-      <p>
-        Here is a demo of the tool:{" "}
-        <a 
-          href="https://youtu.be/Apg_s7EaZA0" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          className="underline hover:text-indigo-400"
-        >
-          YouTube Link
-        </a>
-      </p>
+      <div className="mt-2">
+        <iframe
+          width="100%"
+          maxWidth="800px"
+          height="450"
+          src="https://www.youtube.com/embed/LYCowWiCWmY"
+          title="Jellyfish Rigging Tool Demo"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          className="rounded-lg border border-gray-700 w-full"
+        ></iframe>
+      </div>
 
       <h3 className="text-lg font-semibold mt-6">Outputs</h3>
       <div className="grid grid-cols-1 gap-6 mt-4">
