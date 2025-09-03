@@ -176,7 +176,6 @@ Reservoir UpdateReservoir(Reservoir r, ReservoirSample sam, float weight) {
       "Reservoir Sampling",
       "Spatial and Temporal Reuse"
     ],
-    liveUrl: "https://imgur.com/a/7oP3Gkv",
     githubUrl: "https://github.com/Arin1604/2240-restir.git",
     imageUrl: "https://i.imgur.com/22jWCY0.png"
   },
@@ -400,7 +399,7 @@ Consider a vertex i and its neighbor p below:
 
       </div>
     ),
-    skills: ["C++", "Eigen", "Sparse Linear Algebra", "Mesh Deformation"],
+    skills: ["C++", "Eigen", "Solving Systems of Equations", "Mesh Deformation"],
     features: [
       "ARAP Surface Modeling",
       "Local Rigidity Preservation",
@@ -411,43 +410,128 @@ Consider a vertex i and its neighbor p below:
     imageUrl: "https://i.imgur.com/d3gibgL.gif"
   },
   {
-    title: "Fitness Tracker",
-    description: "A mobile app for tracking workouts and nutrition.",
+    title: "Maya JellyFish Tool",
+    description: "A python tool to automate modeling, rigging, and animating tentacles.",
     fullDescription: (
-      <div className="space-y-4 text-gray-300">
-        <p>
-          Fitness Tracker is a mobile application designed to help users log their workouts and monitor their nutrition.
-        </p>
-        <img
-          src="/images/fitness-dashboard.png"
-          alt="Fitness App Dashboard"
-          className="rounded-lg border border-gray-700"
-        />
-        <p>
-          Users receive personalized workout suggestions based on their fitness goals, as well as nutritional advice.
-          Progress is visualized with interactive charts and graphs.
-        </p>
-        <img
-          src="/images/fitness-graph.png"
-          alt="Fitness Progress Chart"
-          className="rounded-lg border border-gray-700"
-        />
-        <p>
-          The app integrates with Firebase for backend services like authentication and real-time data sync.
-        </p>
+    <div className="space-y-6 text-gray-300">
+
+      <p>
+        I find jellyfish incredibly fascinating! (so much so that I once made an abstract film about them).
+        With this project, I set out to create a tool that lets you create, rig, and animate jellyfish tentacles
+        with full artistic control. 
+      </p>
+
+      <p>
+        A key challenge was generating and managing a large number of geometry objects while keeping the workflow 
+        efficient and usable. For the animations, I use a blend of procedural noise (to represent their natural 
+        movements) and rigging (for artists to make more personable and expressive animations).
+      </p>
+
+      <h3 className="text-lg font-semibold mt-6">Demo</h3>
+      <p>
+        Here is a demo of the tool:{" "}
+        <a 
+          href="https://youtu.be/Apg_s7EaZA0" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="underline hover:text-indigo-400"
+        >
+          YouTube Link
+        </a>
+      </p>
+
+      <h3 className="text-lg font-semibold mt-6">Outputs</h3>
+      <div className="grid grid-cols-1 gap-6 mt-4">
+        <img src="https://i.imgur.com/SGgHkC7.jpeg" alt="Jellyfish render 1" className="rounded-lg border border-gray-700 w-full max-w-4xl" />
+        <img src="https://i.imgur.com/2DvEIXt.jpeg" alt="Jellyfish render 2" className="rounded-lg border border-gray-700 w-full max-w-4xl" />
+        <img src="https://i.imgur.com/74t7Eub.jpeg" alt="Jellyfish render 3" className="rounded-lg border border-gray-700 w-full max-w-4xl" />
+        <img src="https://i.imgur.com/f02F6n1.jpeg" alt="Jellyfish render 4" className="rounded-lg border border-gray-700 w-full max-w-4xl" />
       </div>
-    ),
-    skills: ["React Native", "Firebase"],
+
+      <h3 className="text-lg font-semibold mt-8">Reflections</h3>
+      <p>
+        I am particularly happy with how I incorporated feedback from my mentors (
+        huge shoutout to{" "}
+        <a 
+          href="https://www.aswf.io/" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="underline hover:text-indigo-400"
+        >
+          Academy Software Foundation
+        </a>{" "}
+        and the{" "}
+        <a 
+          href="https://www.aswf.io/summer-learning-program/" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="underline hover:text-indigo-400"
+        >
+          Summer Learning Program
+        </a>
+        ) while building this tool. One of my main goals was to create a tool useful to artists 
+        working in the animation industry. Relying on the insights of people far more artistically 
+        inclined than I was helped me drastically improve the tool and made the process collaborative and fun. 
+      </p>
+
+      <p>Some of the many insights I gained and incorporated into my design included:</p>
+      <ul className="list-disc list-inside space-y-2 text-gray-400">
+        <li>Reworking the UI workflow — my original layout had an inverted workflow, placing the actions artists wanted first at the bottom of the tool.</li>
+        <li>Using Maya’s <strong>Sweep Mesh</strong> for generating the geometry — I had originally intended to use Cylinder geometry nodes, but Sweep Meshes proved more effective as they exposed parameters like tapering point and scale for more artistic control.</li>
+        <li>Improving rigging smoothness by balancing level of detail against computation costs.</li>
+        <li>Writing a function to interpolate between points and add extra joints, enabling smoother rigging that adapts to parameters.</li>
+      </ul>
+
+      <p className="mt-4">
+        On that note, if you test my tool and have suggestions, please reach out at 
+        <span className="font-mono"> arin_idhant@brown.edu</span>. 
+        I’d love your feedback and am driven to keep improving this project.
+      </p>
+
+      <h3 className="text-lg font-semibold mt-8">Implementation Details</h3>
+      <h4 className="font-semibold mt-4">Geometry Generation</h4>
+      <ul className="list-disc list-inside space-y-2 text-gray-400">
+  <li>Used procedurally generated Bézier curves. Points for these curves are generated in a for loop, with the distance between points controlled by artist-adjustable parameters.</li>
+  <li>These points and the curve are stored in a tentacle object.</li>
+  <li>A sweep mesh is created using the generated Bézier curve, which produces the tentacle geometry. The sweep mesh handle is stored in the tentacle object.</li>
+</ul>
+
+      <h4 className="font-semibold mt-4">Rigging Smoothness (Linear Point Interpolation)</h4>
+      <ul className="list-disc list-inside space-y-2 text-gray-400">
+        <li>For each tentacle, the point density is adjusted so joint density can later be controlled.</li>
+        <li>We take two points from the existing collection and incrementally generate new points between them so the new points align with the curve.</li>
+        <li>A line segment is computed by subtracting one point from another, and intermediate points are created along this segment. The number of interpolated points (which determines smoothness) is controlled by an artist parameter.</li>
+      </ul>
+
+      <h4 className="font-semibold mt-4">Rigging the Mesh</h4>
+      <ul className="list-disc list-inside space-y-2 text-gray-400">
+        <li>Smooth the mesh to ensure tentacles bend smoothly.</li>
+        <li>Create joints at each point and store them in the tentacle object.</li>
+        <li>Create an IK spline handle for the joints. This produces a curve for the spline handle, which can be manipulated directly.</li>
+        <li>The spline handle curve has control vertices (CVs). Clusters are created at each CV so the curve (and thus the joints) can be manipulated.</li>
+        <li>Important: We cluster the CVs of the spline handle curve, not the original sweep mesh curve. Clustering the sweep mesh curve would directly deform the geometry, but we would lose the benefits of using joints and spline handles.</li>
+        <li>Set cluster visibility to false, then create NURBS curve controllers to manipulate the clusters. Parent constrain the clusters to these controllers.</li>
+        <li>Parent controllers and clusters under the tentacle to keep the Outliner organized.</li>
+        <li>Finally, call skinCluster on the joints and tentacle geometry to bind them.</li>
+      </ul>
+
+      <h4 className="font-semibold mt-4">Animation</h4>
+      <ul className="list-disc list-inside space-y-2 text-gray-400">
+        <li>Applied procedural animation using trigonometric and randomization functions to displace controllers.</li>
+        <li>Keyframed controllers for final animation.</li>
+      </ul>
+
+    </div>
+  ),
+    skills: ["Maya CMDS library", "Python"],
     features: [
-      "Workout logging and tracking",
-      "Nutritional information and meal logging",
-      "Progress analytics and charts",
-      "Workout suggestions based on user goals",
-      "Social sharing of achievements"
+      "Automated Geometry Generation",
+      "Automated materials",
+      "Automated Rigging",
+      "Procedural Animations",
     ],
-    liveUrl: "https://fitness-tracker-app.com",
-    githubUrl: "https://github.com/yourusername/fitness-tracker",
-    imageUrl: "/projects/fitness-tracker.jpg"
+    githubUrl: "https://github.com/Arin1604/jellyfish-maker.git",
+    imageUrl: "https://i.imgur.com/2DvEIXt.jpeg"
   }
 ];
 
