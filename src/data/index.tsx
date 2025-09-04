@@ -8,6 +8,7 @@ export const navItems: NavItem[] = [
   { label: 'About', href: '/about' },
   { label: 'Projects', href: '/projects' },
   { label: 'Creative', href: '/creative' },
+  { label: 'Reel', href: 'https://youtu.be/Mv9fZjKDHV0?si=E0RHpHYgqntDH9ty'},
   { label: 'Resume', href: 'https://drive.google.com/file/d/108JVdP6HlZitvbNiJOApy3CdLCLKe363/view?usp=sharing'},
 ]
 
@@ -545,6 +546,7 @@ Consider a vertex i and its neighbor p below:
 ];
 
 
+
 export const mediaItems: MediaItem[] = [
   {
     type: 'video',
@@ -552,6 +554,13 @@ export const mediaItems: MediaItem[] = [
     description: 'A short animated piece exploring...',
     thumbnail: '/creative/video1-thumb.jpg',
     videoUrl: 'https://www.youtube.com/watch?v=QHscMam4W7s'
+  },
+  {
+    type: 'photo',
+    title: 'Film Fireworks Album',
+    description: 'Fireworks captured on 35mm Kodak Ultramax 400 Color Print Film ',
+    thumbnail: 'https://live.staticflickr.com/65535/54764182203_c6e5bafde6_h.jpg', // smaller size for preview
+    fullImage: 'https://live.staticflickr.com/65535/54764182203_c6e5bafde6_h.jpg' // can use larger size if available
   },
   {
     type: 'video',
