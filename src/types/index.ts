@@ -10,7 +10,7 @@ export interface Project {
 }
 
 export interface MediaItem {
-  type: 'video' | 'photo'
+  type: 'video' | 'photo' | 'videoy'
   title: string
   description: string
   thumbnail: string

@@ -9,7 +9,7 @@ export const navItems: NavItem[] = [
   { label: 'Projects', href: '/projects' },
   { label: 'Creative', href: '/creative' },
   { label: 'Reel', href: 'https://youtu.be/Mv9fZjKDHV0?si=E0RHpHYgqntDH9ty'},
-  { label: 'Resume', href: 'https://drive.google.com/file/d/108JVdP6HlZitvbNiJOApy3CdLCLKe363/view?usp=sharing'},
+  { label: 'Resume', href: 'https://drive.google.com/file/d/1ovfAtUsS8xev4nEhdVCBUYgCpxKu5uOS/view?usp=sharing'},
 ]
 
 const projects: Project[] = [
@@ -548,13 +548,30 @@ Consider a vertex i and its neighbor p below:
 
 
 export const mediaItems: MediaItem[] = [
+  //AAA
+  {
+    type: 'videoy',
+    title: "Don't Wash Your Clothes With Jellyfish",
+    description:
+      "A one-minute experimental film that explores the experience of having a fever dream far away from the warmth of home. My submission won second place at Brown's Film Club and was screened at the Avon Theater.",
+    thumbnail: '/creative/images/one.jpg',
+    videoUrl: 'https://www.youtube.com/watch?v=ey2iszBzwdg'
+  },
   {
     type: 'video',
-    title: 'Animation Project',
-    description: 'A short animated piece exploring...',
-    thumbnail: '/creative/video1-thumb.jpg',
-    videoUrl: 'https://www.youtube.com/watch?v=QHscMam4W7s'
+    title: 'My final project for our film practices course',
+    description: 'Shot on 16mm film using the Bolex.',
+    thumbnail: '/creative/images/th.jpg',
+    videoUrl: 'https://vimeo.com/1116011823?share=copy'
   },
+  {
+    type: 'video',
+    title: "Assistant Camera – Please Excuse Me, I'm Destructive",
+    description: 'Film for Brown Motion Pictures, where I worked as an Assistant Camera.',
+    thumbnail: '/creative/images/pemd.png',
+    videoUrl: 'https://vimeo.com/780614102?fl=pl&fe=sh'
+  },
+
   {
     type: 'photo',
     title: 'Film Fireworks Album',
@@ -562,28 +579,88 @@ export const mediaItems: MediaItem[] = [
     thumbnail: 'https://live.staticflickr.com/65535/54764182203_c6e5bafde6_h.jpg', // smaller size for preview
     fullImage: 'https://live.staticflickr.com/65535/54764182203_c6e5bafde6_h.jpg' // can use larger size if available
   },
+
+
+  // Flickr Photos
   {
-    type: 'video',
-    title: 'Another Animation Project',
-    description: 'A second animated piece...',
-    thumbnail: '/creative/video2-thumb.jpg',
-    videoUrl: 'https://www.youtube.com/watch?v=7aWL2iEb6y4'
+    type: 'photo',
+    title: 'Film Stills',
+    description: 'Still from film work.',
+    thumbnail: 'https://live.staticflickr.com/65535/54764191718_6c185e366f_z.jpg',
+    fullImage: 'https://live.staticflickr.com/65535/54764191718_6c185e366f_z.jpg'
   },
   {
     type: 'photo',
-    title: 'Photography Series',
-    description: 'Exploring urban landscapes...',
-    thumbnail: '/creative/images/one.jpg',
-    fullImage: '/creative/photo1-full.jpg'
+    title: 'Film Stills',
+    description: 'Still from film work.',
+    thumbnail: 'https://live.staticflickr.com/65535/54765123471_fcff118353_z.jpg',
+    fullImage: 'https://live.staticflickr.com/65535/54765123471_fcff118353_z.jpg'
   },
   {
     type: 'photo',
-    title: 'Photography Series',
-    description: 'Exploring urban landscapes...',
-    thumbnail: '/creative/images/two.jpg',
-    fullImage: '/creative/photo2-full.jpg'
+    title: 'Film Stills',
+    description: 'Still from film work.',
+    thumbnail: 'https://live.staticflickr.com/65535/54765363638_7ea937fe3f_z.jpg',
+    fullImage: 'https://live.staticflickr.com/65535/54765363638_7ea937fe3f_z.jpg'
   },
+  {
+    type: 'photo',
+    title: 'Film Stills',
+    description: 'Still from film work.',
+    thumbnail: 'https://live.staticflickr.com/65535/54763954946_b7614f619a_z.jpg',
+    fullImage: 'https://live.staticflickr.com/65535/54763954946_b7614f619a_z.jpg'
+  },
+  {
+    type: 'photo',
+    title: 'Film Stills',
+    description: 'Still from film work.',
+    thumbnail: 'https://live.staticflickr.com/65535/54763105447_a2999f3126_z.jpg',
+    fullImage: 'https://live.staticflickr.com/65535/54763105447_a2999f3126_z.jpg'
+  },
+  {
+    type: 'photo',
+    title: 'Film Stills',
+    description: 'Still from film work.',
+    thumbnail: 'https://live.staticflickr.com/65535/54763954871_b8c728cbff_z.jpg',
+    fullImage: 'https://live.staticflickr.com/65535/54763954871_b8c728cbff_z.jpg'
+  },
+  {
+    type: 'photo',
+    title: 'Film Stills',
+    description: 'Still from film work.',
+    thumbnail: 'https://live.staticflickr.com/65535/54764191613_64f0af4b0a_z.jpg',
+    fullImage: 'https://live.staticflickr.com/65535/54764191613_64f0af4b0a_z.jpg'
+  },
+  {
+    type: 'photo',
+    title: 'Film Stills',
+    description: 'Still from film work.',
+    thumbnail: 'https://live.staticflickr.com/65535/54764191598_3c78b9eb40_z.jpg',
+    fullImage: 'https://live.staticflickr.com/65535/54764191598_3c78b9eb40_z.jpg'
+  },
+  {
+    type: 'photo',
+    title: 'Film Stills',
+    description: 'Still from film work.',
+    thumbnail: 'https://live.staticflickr.com/65535/54765360989_e48a42bb41_z.jpg',
+    fullImage: 'https://live.staticflickr.com/65535/54765360989_e48a42bb41_z.jpg'
+  },
+  {
+    type: 'photo',
+    title: 'Film Stills',
+    description: 'Still from film work.',
+    thumbnail: 'https://live.staticflickr.com/65535/54766265539_3a26ef0342_z.jpg',
+    fullImage: 'https://live.staticflickr.com/65535/54766265539_3a26ef0342_z.jpg'
+  },
+  {
+    type: 'photo',
+    title: 'Film Stills',
+    description: 'Still from film work.',
+    thumbnail: 'https://live.staticflickr.com/65535/54766025186_c405b39bbd_z.jpg',
+    fullImage: 'https://live.staticflickr.com/65535/54766025186_c405b39bbd_z.jpg'
+  }
 ];
+
 
 export const socialLinks = {
   github: "https://github.com/Arin1604",

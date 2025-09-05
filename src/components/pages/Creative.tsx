@@ -26,7 +26,7 @@ function MediaCard({ type, title, description, thumbnail, videoUrl = ''}: MediaI
   };
 
   // Determine the correct thumbnail based on media type
-  const mediaThumbnail = type === 'video' ? getYouTubeThumbnail(videoUrl) : thumbnail;
+  const mediaThumbnail = type === 'videoy' ? getYouTubeThumbnail(videoUrl) : thumbnail;
 
   return (
     <div className="group relative overflow-hidden rounded-lg shadow-lg transition-shadow duration-300 hover:shadow-xl">
@@ -43,8 +43,13 @@ function MediaCard({ type, title, description, thumbnail, videoUrl = ''}: MediaI
           <p className="text-gray-300 text-sm mb-4">
             {description}
           </p>
-          {type === 'video' && (
-            <a href={videoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded transition-colors duration-200">
+          {(type === 'video' || type === 'videoy') && (
+            <a
+              href={videoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded transition-colors duration-200"
+            >
               <Play className="mr-2" size={20} />
               Watch Video
             </a>
