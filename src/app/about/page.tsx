@@ -23,7 +23,7 @@ export default function AboutPage() {
         <div>
           <h1 className="text-4xl font-bold mb-4">Hi, I’m Arin!</h1>
           <p className="text-lg mb-4">
-            I’m a senior at Brown University studying Computer Science. I adore working on problems at the intersection of Computer Graphics, Computer Vision, and Software Engineering. Currently, I’m a Camera Software Intern at Metalenz, where I’m developing CHI nodes for our Qualcomm based camera framework. 
+            I’m a senior at Brown University studying Computer Science. I adore working on problems at the intersection of Computer Graphics, Computer Vision, and Software Engineering. This summer, I was a Camera Software Intern at Metalenz, where I developed CHI nodes for our Qualcomm based camera framework. 
             
           </p>
           <p className="text-lg mb-6">
