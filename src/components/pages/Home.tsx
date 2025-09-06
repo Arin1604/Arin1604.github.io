@@ -3,7 +3,7 @@ import { socialLinks } from '@/data';
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen">
+    <main className="relative min-h-screen overflow-x-hidden">
       {/* Background Video */}
       <div className="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden">
         <video
