@@ -11,7 +11,7 @@ export default function AboutPage() {
       
       {/* Section 1: About Me */}
       <section className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-20">
-        <div className="w-[1600px] h-[400px] relative -ml-12">
+        <div className="relative w-full max-w-4xl h-[250px] md:h-[400px] mx-auto">
           <Image
             src={'/Arin1.jpg'}
             alt="Arin"
@@ -41,10 +41,10 @@ export default function AboutPage() {
       {/* Section 2: Roles */}
       <section className="max-w-7xl mx-auto">
       <h2 className="text-3xl font-bold mb-6">Roles</h2>
-      <div className="flex overflow-x-auto space-x-6 pb-4">
+      <div className="flex overflow-x-auto space-x-6 pb-4 snap-x snap-mandatory">
 
         {/* Incoming Camera Software Intern */}
-        <div className="min-w-[300px] bg-gray-1000 rounded-lg p-4 shadow-md">
+        <div className="min-w-[300px] bg-gray-1000 rounded-lg p-4 shadow-md snap-start">
           <h3 className="text-xl font-semibold">Camera Software Intern</h3>
           <p className="text-sm text-gray-300">Metalenz · Summer 2025</p>
           <ul className="mt-2 text-sm list-disc list-inside space-y-2">
@@ -55,7 +55,7 @@ export default function AboutPage() {
         </div>
 
         {/* VR Research Assistant */}
-        <div className="min-w-[300px] bg-gray-1000 rounded-lg p-4 shadow-md">
+        <div className="min-w-[300px] bg-gray-1000 rounded-lg p-4 shadow-md snap-start">
           <h3 className="text-xl font-semibold">Research Assistant</h3>
           <p className="text-sm text-gray-300">Brown Visual Computing Lab · Fall 2024 - Present</p>
           <ul className="mt-2 text-sm list-disc list-inside space-y-2">
@@ -66,7 +66,7 @@ export default function AboutPage() {
         </div>
 
         {/* ASWF Summer Learning Program */}
-        <div className="min-w-[300px] bg-gray-1000 rounded-lg p-4 shadow-md">
+        <div className="min-w-[300px] bg-gray-1000 rounded-lg p-4 shadow-md snap-start">
           <h3 className="text-xl font-semibold">ASWF Engagement Team</h3>
           <p className="text-sm text-gray-300">Academy Software Foundation · Summer 2025</p>
           <ul className="mt-2 text-sm list-disc list-inside space-y-2">
@@ -75,7 +75,7 @@ export default function AboutPage() {
           </ul>
         </div>
 
-        <div className="min-w-[300px] bg-gray-1000 rounded-lg p-4 shadow-md">
+        <div className="min-w-[300px] bg-gray-1000 rounded-lg p-4 shadow-md snap-start">
           <h3 className="text-xl font-semibold">Summer Learning Mentee</h3>
           <p className="text-sm text-gray-300">Academy Software Foundation · Summer 2024</p>
           <ul className="mt-2 text-sm list-disc list-inside space-y-2">
@@ -85,7 +85,7 @@ export default function AboutPage() {
         </div>
 
         {/* Teaching Assistant Roles */}
-        <div className="min-w-[300px] bg-gray-1000 rounded-lg p-4 shadow-md">
+        <div className="min-w-[300px] bg-gray-1000 rounded-lg p-4 shadow-md snap-start">
           <h3 className="text-xl font-semibold">Teaching Assistant & Course Developer</h3>
           <p className="text-sm text-gray-300">Brown University · Fall 2023 – Fall 2025</p>
           <ul className="mt-2 text-sm list-disc list-inside space-y-2">
@@ -96,7 +96,7 @@ export default function AboutPage() {
         </div>
 
         {/* Program Coordinator - International Mentoring Program */}
-        <div className="min-w-[300px] bg-gray-1000 rounded-lg p-4 shadow-md">
+        <div className="min-w-[300px] bg-gray-1000 rounded-lg p-4 shadow-md snap-start">
           <h3 className="text-xl font-semibold">Program Coordinator</h3>
           <p className="text-sm text-gray-300">Global Brown Center · Spring 2024 – Fall 2025</p>
           <ul className="mt-2 text-sm list-disc list-inside space-y-2">
