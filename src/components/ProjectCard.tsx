@@ -35,7 +35,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     <>
       <div
         onClick={() => setIsOpen(true)}
-        className="flex w-full max-w-5xl mb-8 cursor-pointer bg-gray-800 border border-gray-600 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+        className="flex flex-col md:flex-row w-full max-w-5xl mb-8 cursor-pointer bg-gray-800 border border-gray-600 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
       >
         <div
           className="flex-shrink-0 w-64 border-r border-gray-600 bg-gray-800 p-4 flex items-center justify-center"
@@ -72,7 +72,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
       {isOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50" onClick={handleOutsideClick}>
-          <div className="relative flex bg-gray-900 border border-gray-600 rounded-lg p-8 max-w-6xl w-full m-4 shadow-xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+        <div
+              className="relative flex bg-gray-900 border border-gray-600 rounded-lg p-8 max-w-6xl w-full m-4 shadow-xl max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >            
             {project.imageUrl ? (
               <div className="flex-shrink-0 w-80 border-r border-gray-600 mr-4 p-2 flex items-center justify-center">
                 <img
