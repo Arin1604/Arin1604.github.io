@@ -68,13 +68,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, variant = 'default' 
         onClick={openProject}
         onKeyDown={handleCardKeyDown}
         className={isFeatured
-          ? 'group flex w-[82vw] max-w-80 flex-none snap-start cursor-pointer flex-col overflow-hidden rounded-3xl border border-white/30 bg-transparent shadow-lg transition duration-300 hover:-translate-y-0.5 hover:border-white/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:w-96 md:max-w-none md:flex-row'
+          ? 'group flex min-h-[15.5rem] w-[86vw] max-w-sm flex-none snap-start cursor-pointer flex-col overflow-hidden rounded-3xl border border-white/30 bg-transparent shadow-lg transition duration-300 hover:-translate-y-0.5 hover:border-white/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:min-h-0 md:w-96 md:max-w-none md:flex-row'
           : 'mb-8 flex w-full max-w-5xl cursor-pointer flex-col overflow-hidden rounded-2xl border border-gray-600 bg-gray-800 shadow-lg transition-shadow duration-300 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:flex-row'
         }
       >
         <div
           className={isFeatured
-            ? 'flex h-24 w-full flex-shrink-0 items-center justify-center bg-transparent p-2 md:h-auto md:w-32'
+            ? 'flex h-36 w-full flex-shrink-0 items-center justify-center bg-transparent p-2 md:h-auto md:w-32'
             : 'flex h-48 w-full flex-shrink-0 items-center justify-center border-b border-gray-600 bg-gray-800 p-4 md:h-auto md:w-64 md:border-b-0 md:border-r'
           }
         >
@@ -94,15 +94,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, variant = 'default' 
           )}
         </div>
 
-        <div className={isFeatured ? 'min-w-0 flex-1 px-3 pb-3 md:p-3 md:pl-1' : 'flex-1 p-6'}>
+        <div className={isFeatured ? 'min-w-0 flex-1 px-4 pb-4 pt-1 md:p-3 md:pl-1' : 'flex-1 p-6'}>
           <h3 className={isFeatured
-            ? 'mb-1 line-clamp-2 text-sm font-bold font-mono text-white drop-shadow-lg md:text-base'
+            ? 'mb-2 line-clamp-2 text-base font-bold font-mono text-white drop-shadow-lg'
             : 'mb-2 text-xl font-bold font-mono text-white'
           }>
             {project.title}
           </h3>
           <p className={isFeatured
-            ? 'line-clamp-2 text-xs leading-relaxed text-white/90 drop-shadow-lg md:text-sm'
+            ? 'line-clamp-3 text-sm leading-relaxed text-white/90 drop-shadow-lg'
             : 'mb-4 text-gray-300'
           }>
             {project.description}

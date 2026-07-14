@@ -1,5 +1,6 @@
 import { Github, Linkedin, Mail } from 'lucide-react';
 import { projects, socialLinks } from '@/data';
+import HorizontalCardRail from '@/components/HorizontalCardRail';
 import ProjectCard from '@/components/ProjectCard';
 
 export default function Home() {
@@ -12,7 +13,7 @@ export default function Home() {
           muted
           loop
           playsInline
-          className="h-full w-full object-cover object-[58%_center] md:object-[55%_center]"
+          className="h-full w-full object-cover object-[52%_center] md:object-[55%_center]"
         >
           <source src="/demo_reel.mp4" type="video/mp4" />
           Your browser does not support the video tag.
@@ -61,26 +62,16 @@ export default function Home() {
           </div>
         </div>
 
-        <section
-          aria-labelledby="featured-projects-heading"
-          className="mx-auto w-full max-w-7xl flex-none rounded-[1.75rem] border border-white/25 bg-transparent p-3 md:p-4"
+        <HorizontalCardRail
+          id="featured-projects"
+          title="Featured Projects"
+          variant="overlay"
+          className="mx-auto w-full max-w-5xl flex-none"
         >
-          <div className="mb-2 flex items-center justify-between px-1 md:mb-3">
-            <h2
-              id="featured-projects-heading"
-              className="text-sm font-semibold tracking-wide text-white drop-shadow-lg md:text-lg"
-            >
-              Featured Projects
-            </h2>
-            <span className="text-xs text-white/80 drop-shadow-lg md:hidden">Swipe</span>
-          </div>
-
-          <div className="featured-project-scroll flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain rounded-2xl bg-transparent pb-1 md:gap-4">
-            {projects.map((project) => (
-              <ProjectCard key={project.title} project={project} variant="featured" />
-            ))}
-          </div>
-        </section>
+          {projects.map((project) => (
+            <ProjectCard key={project.title} project={project} variant="featured" />
+          ))}
+        </HorizontalCardRail>
       </div>
     </main>
   );
