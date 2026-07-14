@@ -1,17 +1,18 @@
 import { Github, Linkedin, Mail } from 'lucide-react';
-import { socialLinks } from '@/data';
+import { projects, socialLinks } from '@/data';
+import ProjectCard from '@/components/ProjectCard';
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden">
+    <main className="relative h-[calc(100svh-4rem)] overflow-hidden">
       {/* Background Video */}
-      <div className="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden">
+      <div className="fixed inset-0 -z-10 overflow-hidden">
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="w-full h-full object-cover"
+          className="h-full w-full object-cover object-[58%_center] md:object-[55%_center]"
         >
           <source src="/demo_reel.mp4" type="video/mp4" />
           Your browser does not support the video tag.
@@ -19,41 +20,67 @@ export default function Home() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex items-center justify-center min-h-screen px-4">
-        <div className="text-center bg-transparent p-8 rounded-lg">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 shadow-lg">
-            Arin Idhant
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-200 mb-12 max-w-2xl mx-auto">
-            Creative technologist & visual artist
-          </p>
+      <div className="relative z-10 flex h-full flex-col justify-between px-4 py-4 md:px-8 md:py-8">
+        <div className="flex flex-1 items-center justify-center text-center">
+          <div className="rounded-3xl bg-transparent px-4 py-3 md:p-8">
+            <h1 className="mb-3 text-4xl font-bold text-white drop-shadow-lg md:mb-6 md:text-7xl">
+              Arin Idhant
+            </h1>
+            <p className="mx-auto mb-5 max-w-2xl text-base text-gray-100 drop-shadow-lg md:mb-10 md:text-2xl">
+              Creative technologist & visual artist
+            </p>
 
           {/* Social Links */}
-          <div className="flex justify-center gap-8">
+            <div className="flex justify-center gap-8 drop-shadow-lg">
             <a
               href={socialLinks.github}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="GitHub"
               className="text-white hover:text-gray-300 transition-colors"
             >
-              <Github size={32} />
+              <Github className="h-7 w-7 md:h-8 md:w-8" />
             </a>
             <a
               href={socialLinks.linkedin}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="LinkedIn"
               className="text-white hover:text-gray-300 transition-colors"
             >
-              <Linkedin size={32} />
+              <Linkedin className="h-7 w-7 md:h-8 md:w-8" />
             </a>
             <a
               href={`mailto:${socialLinks.email}`}
+              aria-label="Email"
               className="text-white hover:text-gray-300 transition-colors"
             >
-              <Mail size={32} />
+              <Mail className="h-7 w-7 md:h-8 md:w-8" />
             </a>
+            </div>
           </div>
         </div>
+
+        <section
+          aria-labelledby="featured-projects-heading"
+          className="mx-auto w-full max-w-7xl flex-none rounded-[1.75rem] border border-white/25 bg-transparent p-3 md:p-4"
+        >
+          <div className="mb-2 flex items-center justify-between px-1 md:mb-3">
+            <h2
+              id="featured-projects-heading"
+              className="text-sm font-semibold tracking-wide text-white drop-shadow-lg md:text-lg"
+            >
+              Featured Projects
+            </h2>
+            <span className="text-xs text-white/80 drop-shadow-lg md:hidden">Swipe</span>
+          </div>
+
+          <div className="featured-project-scroll flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain rounded-2xl bg-transparent pb-1 md:gap-4">
+            {projects.map((project) => (
+              <ProjectCard key={project.title} project={project} variant="featured" />
+            ))}
+          </div>
+        </section>
       </div>
     </main>
   );
