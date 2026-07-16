@@ -14,6 +14,198 @@ export const navItems: NavItem[] = [
 
 const projects: Project[] = [
   {
+    title: "MAE Galaxy Classifier",
+    description: "Masked Autoencoder pre-training and tailored augmentations for galaxy classification.",
+    fullDescription: (
+      <div className="space-y-6 text-gray-300">
+        <p className="text-sm font-mono text-gray-400">Project report by Arin Idhant</p>
+
+        <h3 className="text-lg font-semibold mt-6">Environment Setup</h3>
+        <p>
+          For this project, I implemented Meta&apos;s Masked Autoencoder (MAE) to pre-train a Vision Transformer (ViT Base Patch 16). The ViT-Base model was chosen because our dataset was relatively small, and training a larger model would have required more computational resources. Instructions to run the code are in Install.md.{" "}
+          <a
+            href="https://github.com/Arin1604/mae_galaxy.git"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold underline hover:text-indigo-400"
+          >
+            Code Link.
+          </a>
+        </p>
+
+        <h3 className="text-lg font-semibold mt-8">Pre-training Experiments</h3>
+        <h4 className="font-semibold mt-4">Loss: Normalized Pixel Loss vs Mean Squared Error</h4>
+        <p>
+          In the project, I compare the difference between Mean Squared Error Loss and Normalized Pixel Loss. The latter normalizes the target image patch so that brightness has a lower influence on the final reconstruction loss. For our galaxy image, it appears that the brightness values are important in classifying the galaxies and normalizing them migh result in loosing out on intensity features.
+        </p>
+        <p>Below are the results from the linear probe accuracy:</p>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <figure className="flex flex-col items-center">
+            <img
+              src="/projects/mae-galaxy/normalized-vs-mse-accuracy.png"
+              alt="Normalized pixel loss versus mean squared error test accuracy comparison"
+              className="w-full rounded-lg border border-gray-700"
+              loading="lazy"
+            />
+            <figcaption className="mt-2 text-center text-sm text-gray-400">Test Accuracy Comparison</figcaption>
+          </figure>
+          <figure className="flex flex-col items-center">
+            <img
+              src="/projects/mae-galaxy/normalized-vs-mse-loss.png"
+              alt="Normalized pixel loss versus mean squared error test loss comparison"
+              className="w-full rounded-lg border border-gray-700"
+              loading="lazy"
+            />
+            <figcaption className="mt-2 text-center text-sm text-gray-400">Test Loss Comparison</figcaption>
+          </figure>
+        </div>
+
+        <h4 className="font-semibold mt-6">Patching Ratio and Distribution</h4>
+        <p>
+          The MAE paper uses a 0.75 masking ratio, which works for ImageNet. However, for our sparse galaxy images, masking empty space doesn&apos;t help the model learn much. I tried lower masking ratios and also experimented with non-uniform random masking by biasing the sampling toward the image center.
+        </p>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <figure className="flex flex-col items-center">
+            <img
+              src="/projects/mae-galaxy/center-biased-mask-01.jpg"
+              alt="Center-biased random masking with a 0.1 mask ratio"
+              className="w-full rounded-lg border border-gray-700"
+              loading="lazy"
+            />
+            <figcaption className="mt-2 text-center text-sm text-gray-400">(below) Center Biased Random Masking. Mask Ratio = 0.1</figcaption>
+          </figure>
+          <figure className="flex flex-col items-center">
+            <img
+              src="/projects/mae-galaxy/center-biased-mask-06.jpg"
+              alt="Center-biased random masking with a 0.6 mask ratio"
+              className="w-full rounded-lg border border-gray-700"
+              loading="lazy"
+            />
+            <figcaption className="mt-2 text-center text-sm text-gray-400">(below) Center Biased Random Masking. Mask Ratio = 0.6</figcaption>
+          </figure>
+        </div>
+
+        <h3 className="text-lg font-semibold mt-8">Augmentations</h3>
+        <p>
+          Some of the augmentations used in the MAE paper seemed ill-suited for our dataset. Particularly, random cropping proved to be detrimental to learning, as the crop ratio would frequently crop out important details about the Galaxy. Instead, I end up selecting data augmentations like center cropping and rotations (since our galaxies are located in the center of the images). Furthermore, I experimented with normalization and gamma compression to bring out the details in our image.
+        </p>
+
+        <div className="grid grid-cols-2 gap-6">
+          <figure className="flex flex-col items-center">
+            <img
+              src="/projects/mae-galaxy/without-normalization.png"
+              alt="Galaxy image without normalization"
+              className="w-full max-w-56 rounded-lg border border-gray-700"
+              loading="lazy"
+            />
+            <figcaption className="mt-2 text-center text-sm text-gray-400">Without Normalization</figcaption>
+          </figure>
+          <figure className="flex flex-col items-center">
+            <img
+              src="/projects/mae-galaxy/with-normalization.png"
+              alt="Galaxy image with normalization"
+              className="w-full max-w-56 rounded-lg border border-gray-700"
+              loading="lazy"
+            />
+            <figcaption className="mt-2 text-center text-sm text-gray-400">With Normalization</figcaption>
+          </figure>
+        </div>
+
+        <p>Below are examples of reconstructed images from the normalized dataset, with and without gamma compression:</p>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <figure className="flex flex-col items-center">
+            <img
+              src="/projects/mae-galaxy/reconstruction-without-gamma-1.png"
+              alt="First MAE reconstruction example without gamma compression"
+              className="w-full rounded-lg border border-gray-700"
+              loading="lazy"
+            />
+            <figcaption className="mt-2 text-center text-sm text-gray-400">Without Gamma</figcaption>
+          </figure>
+          <figure className="flex flex-col items-center">
+            <img
+              src="/projects/mae-galaxy/reconstruction-without-gamma-2.png"
+              alt="Second MAE reconstruction example without gamma compression"
+              className="w-full rounded-lg border border-gray-700"
+              loading="lazy"
+            />
+            <figcaption className="mt-2 text-center text-sm text-gray-400">Without Gamma</figcaption>
+          </figure>
+          <figure className="flex flex-col items-center">
+            <img
+              src="/projects/mae-galaxy/reconstruction-with-gamma-1.png"
+              alt="First MAE reconstruction example with gamma compression"
+              className="w-full rounded-lg border border-gray-700"
+              loading="lazy"
+            />
+            <figcaption className="mt-2 text-center text-sm text-gray-400">With Gamma</figcaption>
+          </figure>
+          <figure className="flex flex-col items-center">
+            <img
+              src="/projects/mae-galaxy/reconstruction-with-gamma-2.png"
+              alt="Second MAE reconstruction example with gamma compression"
+              className="w-full rounded-lg border border-gray-700"
+              loading="lazy"
+            />
+            <figcaption className="mt-2 text-center text-sm text-gray-400">With Gamma</figcaption>
+          </figure>
+        </div>
+
+        <p>Although this made the images visually clearer, it did not significantly improve training performance.</p>
+
+        <h3 className="text-lg font-semibold mt-8">Linear Probing</h3>
+        <p>
+          To evaluate the learned features, I used a linear probe for classification. Using the Adam optimizer and my customized augmentations helped improve the accuracy of the linear probe.
+        </p>
+        <p>
+          Below are results comparing my pretrained backbone to a randomly initialized ViT. After 200 epochs, I achieved a maximum accuracy of 69.06%.
+        </p>
+
+        <figure className="flex flex-col items-center">
+          <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-3">
+            <img
+              src="/projects/mae-galaxy/linear-probe-top1-accuracy.png"
+              alt="Linear probe top-1 test accuracy"
+              className="w-full rounded-lg border border-gray-700"
+              loading="lazy"
+            />
+            <img
+              src="/projects/mae-galaxy/linear-probe-top5-accuracy.png"
+              alt="Linear probe top-5 test accuracy"
+              className="w-full rounded-lg border border-gray-700"
+              loading="lazy"
+            />
+            <img
+              src="/projects/mae-galaxy/linear-probe-train-loss.png"
+              alt="Linear probe training loss"
+              className="w-full rounded-lg border border-gray-700"
+              loading="lazy"
+            />
+          </div>
+          <figcaption className="mt-2 text-center text-sm text-gray-400">Linear Probe Performance Comparison</figcaption>
+        </figure>
+
+        <h3 className="text-lg font-semibold mt-8">Conclusion</h3>
+        <p>
+          This project explored how MAE pre-training and tailored augmentations can improve feature learning for galaxy classification.
+        </p>
+      </div>
+    ),
+    skills: ["Python", "PyTorch", "Masked Autoencoders", "Vision Transformers"],
+    features: [
+      "Self-Supervised MAE Pre-training",
+      "Galaxy Classification",
+      "Center-Biased Random Masking",
+      "Customized Data Augmentations",
+      "Linear Probe Evaluation"
+    ],
+    githubUrl: "https://github.com/Arin1604/mae_galaxy.git",
+    imageUrl: "/projects/mae-galaxy/with-normalization.png"
+  },
+  {
     title: "ReSTIR for Realtime Path-Tracing",
 description: "An implementation of Nvidia's ReSTIR Algorithm for improving real time rendering",
 fullDescription: (
